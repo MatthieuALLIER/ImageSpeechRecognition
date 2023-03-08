@@ -3,11 +3,10 @@ import cv2
 def opencam():
     ### CHARGER LE MODELE 
     #path = "/Users/titouanhoude/Documents/GitHub/ImageSpeechRecognition/video"
-    path = "C:/Documents/GitHub/ImageSpeechRecognition/video"
-    model = "/model/haarcascade_frontalface_default.xml"
+    model = "model/haarcascade_frontalface_default.xml"
 
     # Charger le classificateur cascade pour la détection de visages
-    faceCascade = cv2.CascadeClassifier(path + model)
+    faceCascade = cv2.CascadeClassifier(model)
 
     video_capture = cv2.VideoCapture(0)
 
