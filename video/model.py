@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from keras_vggface.vggface import VGGFace
-from keras_vggface.utils import preprocess_input
+from keras_vggface.utils import preprocess_input*
 
 ### CHARGER LE MODELE DE DETECTION DE VISAGE
 face_model_path = "./model/haarcascade_frontalface_default.xml"
