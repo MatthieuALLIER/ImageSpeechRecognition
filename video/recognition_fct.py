@@ -6,10 +6,10 @@ def opencam():
     #path = "/Users/titouanhoude/Documents/GitHub/ImageSpeechRecognition/video"
     path = "C:/Documents/GitHub/ImageSpeechRecognition/video"
     model = "/model/haarcascade_frontalface_default.xml"
-
+    #faceCascade = cv2.CascadeClassifier(model)
+    faceCascade = cv2.CascadeClassifier(path + model)
 
     # Charger le classificateur cascade pour la détection de visages
-    faceCascade = cv2.CascadeClassifier(path + model)
     video_capture = cv2.VideoCapture(0)
     
     frame_width = int(video_capture.get(3))
