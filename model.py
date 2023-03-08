@@ -1,36 +1,21 @@
 import face_recognition
 import cv2
 import numpy as np
-import os
-import re
-# Get a reference to webcam #0 (the default one)
-video_capture = cv2.VideoCapture(0)
+from video_detection import pretrained_age, getImagesAndLabels
 
+# Listes
 known_face_encodings = []
 known_face_names = []
-
-def getImagesAndLabels(path):
-
-    imagePaths = [os.path.join(path,f) for f in os.listdir(path)]  
-    for imagePath in imagePaths:
-
-        image = face_recognition.load_image_file(imagePath)
-        image_face_encoding = face_recognition.face_encodings(image)[0]
-        known_face_encodings.append(image_face_encoding)   
-
-        name = os.path.splitext(os.path.basename(imagePath))[0]
-        pattern = re.compile(r"[\d._]+")
-        name = pattern.sub("", name)
-
-        known_face_names.append(name)
-
-    return known_face_encodings, known_face_names
-
-known_face_encodings, known_face_names = getImagesAndLabels("./photos/")
-# Initialize some variables
 face_locations = []
 face_encodings = []
 face_names = []
+
+# A enregistrer dans des listes
+ageNet,genderNet,ageList,genderList,MODEL_MEAN_VALUES = pretrained_age()
+known_face_encodings, known_face_names = getImagesAndLabels("./photos/")
+
+# Get a reference to webcam #0 (the default one)
+video_capture = cv2.VideoCapture(0)
 process_this_frame = True
 
 while True:
@@ -40,6 +25,8 @@ while True:
     # Only process every other frame of video to save time
     if process_this_frame:
         # Resize frame of video to 1/4 size for faster face recognition processing
+
+        # Marche si on met 320 240 à la place de 0 0 mais décale tout
         small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
 
         # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
@@ -80,10 +67,31 @@ while True:
 
         # Draw a box around the face
         cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
+        # Extract face ROI
+        
+        # Preprocess the face ROI
+        # blob = cv2.dnn.blobFromImage(face_locations, 1.0, (227, 227), MODEL_MEAN_VALUES, swapRB=False)
+        
+        # # Pass the face through the age and gender nets
+        # genderNet.setInput(blob)
+        # genderPreds = genderNet.forward()
+        # gender = genderList[genderPreds[0].argmax()]
+        
+        # ageNet.setInput(blob)
+        # agePreds = ageNet.forward()
+        # age = ageList[agePreds[0].argmax()]
+        
+        # Draw age and gender labels on the frame
+        # label = "{}, {}".format(gender, age)
 
-        # Draw a label with a name below the face
+        # Cadre ? 
         cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
+
         font = cv2.FONT_HERSHEY_DUPLEX
+
+        # Age - Sexe
+        # cv2.putText(frame, label, (left + 6, bottom - 3), font, 1.0, (255, 255, 255), 1)
+        # Prenom
         cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
 
     # Display the resulting image

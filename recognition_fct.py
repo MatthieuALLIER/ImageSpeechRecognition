@@ -1,7 +1,7 @@
 import cv2
 import streamlit as st
 import datetime
-from pretrained_age import pretrained_age
+from video_detection import pretrained_age
 
 def opencam():
     ### CHARGER LE MODELE 
