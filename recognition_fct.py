@@ -1,6 +1,7 @@
 import cv2
 import streamlit as st
 import datetime
+from pretrained_age import pretrained_age
 
 def opencam():
     ### CHARGER LE MODELE 
@@ -17,22 +18,7 @@ def opencam():
     frame_height = int(video_capture.get(4))
     size = (frame_width, frame_height)
 
-    faceProto = "opencv_face_detector.pbtxt"
-    faceModel = "opencv_face_detector_uint8.pb"
-
-    ageProto = "age_deploy.prototxt"
-    ageModel = "age_net.caffemodel"
-
-    genderProto = "gender_deploy.prototxt"
-    genderModel = "gender_net.caffemodel"
-
-    MODEL_MEAN_VALUES = (78.4263377603, 87.7689143744, 114.895847746)
-    ageList = ['(0-2)', '(4-6)', '(8-12)', '(15-20)', '(25-32)', '(38-43)', '(48-53)', '(60-100)']
-    genderList = ['Male', 'Female']
-
-    ageNet = cv2.dnn.readNet(ageModel,ageProto)
-    genderNet = cv2.dnn.readNet(genderModel, genderProto)
-    faceNet = cv2.dnn.readNet(faceModel, faceProto)
+    ageNet,genderNet,ageList,genderList,MODEL_MEAN_VALUES = pretrained_age()
 
     record=False
     out= None
