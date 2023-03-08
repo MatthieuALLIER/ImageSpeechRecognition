@@ -11,8 +11,9 @@ def recognition_voice():
         audio=r.listen(source)
         MyText=r.recognize_google(audio)
         MyText=MyText.lower()
-        if MyText=="open webcam":
-            opencam()
+        print(MyText)
+        #if MyText=="hello":
+        #    print('hello')
 
 
 recognition_voice()
