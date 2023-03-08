@@ -1,5 +1,4 @@
 import cv2
-<<<<<<< HEAD
 import streamlit as st
 import datetime
 
