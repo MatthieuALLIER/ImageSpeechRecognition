@@ -35,11 +35,15 @@ def features_train(directory):
     features = []
     totaldir = []
     y = []
+    n  = 0
+    id = []
     
-    no_damage = os.listdir(directory)
-    for i in no_damage :
+    l_dir = os.listdir(directory)
+    for i in l_dir :
         totaldir.append(str(directory + i))
         y.append(i.split(".")[0])
+        n +=1
+        id.append(n)
 
     # Récupération des features dans les images
     for dir in totaldir : 
@@ -47,7 +51,7 @@ def features_train(directory):
 
     features = pd.DataFrame(features)
 
-    return features, y
+    return features, y, id
 
 
 # Chemin des différents datasets
@@ -67,7 +71,8 @@ scaler = transforms.Resize((150, 150))
 normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 to_tensor = transforms.ToTensor()
 
-X_train, y_train = features_train(photos)
+X_train, y_train, id = features_train(photos)
 
 np.save('./extract_features/reference_data.npy', X_train)
 np.save('./extract_features/reference_names.npy', y_train)
+np.save('./extract_features/reference_labels.npy', id)
