@@ -11,12 +11,7 @@ def listenReact():
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source, duration=3)
         while True:
-<<<<<<< Updated upstream
             audio = r.listen(source, phrase_time_limit=2)
-=======
-            
-            audio=r.listen(source,phrase_time_limit=2)
->>>>>>> Stashed changes
             try:
                 sortie = io.StringIO()
                 with contextlib.redirect_stdout(sortie):
@@ -30,20 +25,12 @@ def listenReact():
                     print('La caméra démarre')
                 
                 if (dest=="record"):
-<<<<<<< Updated upstream
                     print("Enregistrement")
-=======
-                    print("L'enregistrement démarre")
->>>>>>> Stashed changes
                     keyboard.press('r')
                     keyboard.release('r')
                     
                 if (dest=="stop"):
-<<<<<<< Updated upstream
                     print("Fin de l'enregistrement")
-=======
-                    print("L'enregistrement s'arrête")
->>>>>>> Stashed changes
                     keyboard.press('s')
                     keyboard.release('s')
                 
