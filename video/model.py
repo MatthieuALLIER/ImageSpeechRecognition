@@ -14,10 +14,8 @@ def getImagesAndLabels(path):
     imagePaths = [os.path.join(path,f) for f in os.listdir(path)]  
     for imagePath in imagePaths:
 
-        print(imagePath)
         image = face_recognition.load_image_file(imagePath)
         image_face_encoding = face_recognition.face_encodings(image)[0]
-        print(image_face_encoding)
         known_face_encodings.append(image_face_encoding)   
 
         name = os.path.splitext(os.path.basename(imagePath))[0]
