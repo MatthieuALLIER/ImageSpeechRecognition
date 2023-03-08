@@ -25,12 +25,12 @@ def listenReact():
                     print('La caméra démarre')
                 
                 if (dest=="launch record"):
-                    print("La caméra se ferme")
+                    print("Enregistrement")
                     keyboard.press('r')
                     keyboard.release('r')
                     
                 if (dest=="stop record"):
-                    print("La caméra se ferme")
+                    print("Fin de l'enregistrement")
                     keyboard.press('s')
                     keyboard.release('s')
                 
@@ -44,5 +44,3 @@ def listenReact():
                     break
             except Exception as e:
                 e
-    
-listenReact()
