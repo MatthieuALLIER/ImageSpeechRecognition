@@ -1,29 +1,19 @@
 import face_recognition
 import cv2
 import numpy as np
-from video_detection import pretrained_age
 import json
-from tensorflow.keras.models import load_model
 from deepface import DeepFace
 
 # Listes
 face_locations = []
 face_encodings = []
 face_names = []
-genders = []
-ages = []
-
-# Import models 
-model = load_model('./model/my_model_MobileNet.h5')
 
 # Ouvrir les features
 known_face_encodings = np.load("./photos_featured/known_face_encodings.npy")
 # Ouvrir les labels
 with open('./photos_featured/known_face_names.json', 'r') as f:
     known_face_names = json.load(f)
-
-# A enregistrer dans des listes
-ageNet,genderNet,ageList,genderList,MODEL_MEAN_VALUES = pretrained_age()
 
 # Get a reference to webcam #0 (the default one)
 video_capture = cv2.VideoCapture(0)
@@ -60,24 +50,7 @@ while True:
 
             face_names.append(name)
 
-            blob = cv2.dnn.blobFromImage(small_frame, 1.0, (227, 227), MODEL_MEAN_VALUES, swapRB=False)
-
-            #Pass the face through the age and gender nets
-            genderNet.setInput(blob)
-            genderPreds = genderNet.forward()
-            gender = genderList[genderPreds[0].argmax()]
-
-            ageNet.setInput(blob)
-            agePreds = ageNet.forward()
-            age = ageList[agePreds[0].argmax()]
-
-            obj = DeepFace.analyze(small_frame)
-            print(obj)
-            small_frame_resized = cv2.resize(small_frame, (224, 224))
-            small_frame_resized = np.expand_dims(small_frame_resized, axis=0)
-            emotion_probabilities = model.predict(small_frame_resized, verbose = 0)[0]
-            emotion_label = np.argmax(emotion_probabilities)
-            emotion_text = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral'][emotion_label]
+            obj = DeepFace.analyze(frame, actions = ['emotion', 'age', 'gender'], enforce_detection=False, silent=True)
 
     process_this_frame = not process_this_frame
 
@@ -97,13 +70,6 @@ while True:
         font = cv2.FONT_HERSHEY_DUPLEX
         # Prenom
         cv2.putText(frame, name, (left + 6, bottom +10), font, 1.0, (0, 0, 0), 1)
-        
-        # # Draw age and gender labels on the frame
-        label = "{}, {}".format(gender, age)
-        # Age - Sexe
-        cv2.putText(frame, label, (left + 6, bottom + 50), font, 1.0, (0, 0, 0), 1)
-        # Emotion
-        cv2.putText(frame, emotion_text, (left, bottom-10),font, 1, (0, 0, 0), 1)
 
     # Display the resulting image
     cv2.imshow('Video', frame)
