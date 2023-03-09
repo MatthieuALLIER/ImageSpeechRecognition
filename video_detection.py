@@ -3,13 +3,14 @@ import os
 import face_recognition
 import re
 import warnings
+import numpy as np
+import json
+import ast
 
 # Supprimer le warning "Décompression bomb DOS"
 warnings.filterwarnings("ignore", message="Image size.*")
 
-# Listes
 known_face_encodings = []
-known_face_names = []
 
 def pretrained_age():
 
@@ -29,6 +30,14 @@ def pretrained_age():
     return ageNet,genderNet,ageList,genderList,MODEL_MEAN_VALUES
 
 def getImagesAndLabels(path):
+
+    try:
+        # Ouvrir les labels pour étendre la liste
+        with open('./photos_featured/known_face_names.json', 'r') as f:
+            known_face_names = json.load(f)
+    except:
+        known_face_names = []
+
     imagePaths = [os.path.join(path,f) for f in os.listdir(path)]  
     for imagePath in imagePaths:
         

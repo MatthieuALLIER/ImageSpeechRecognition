@@ -4,7 +4,16 @@ import numpy as np
 from video_detection import getImagesAndLabels
 import json
 
-known_face_encodings, known_face_names = getImagesAndLabels("./photos_to_train/")
+try:
+    # Ouvrir les anciennes features
+    known_face_encodings_to_concat = np.load("./photos_featured/known_face_encodings.npy")
+    # Feature sur les nouvelles photos
+    known_face_encodings, known_face_names = getImagesAndLabels("./photos_to_train/")
+    # Assembler les deux
+    known_face_encodings = np.concatenate((known_face_encodings_to_concat, known_face_encodings))
+
+except:
+    known_face_encodings, known_face_names = getImagesAndLabels("./photos_to_train/")
 
 # Enregistrer les features en .npy
 np.save("./photos_featured/known_face_encodings.npy", known_face_encodings)
