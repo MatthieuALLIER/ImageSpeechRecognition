@@ -2,13 +2,14 @@ import cv2
 import os
 import face_recognition
 import re
+import warnings
+
+# Supprimer le warning "Décompression bomb DOS"
+warnings.filterwarnings("ignore", message="Image size.*")
 
 # Listes
 known_face_encodings = []
 known_face_names = []
-face_locations = []
-face_encodings = []
-face_names = []
 
 def pretrained_age():
 
@@ -28,10 +29,9 @@ def pretrained_age():
     return ageNet,genderNet,ageList,genderList,MODEL_MEAN_VALUES
 
 def getImagesAndLabels(path):
-
     imagePaths = [os.path.join(path,f) for f in os.listdir(path)]  
     for imagePath in imagePaths:
-
+        
         image = face_recognition.load_image_file(imagePath)
         image_face_encoding = face_recognition.face_encodings(image)[0]
         known_face_encodings.append(image_face_encoding)   

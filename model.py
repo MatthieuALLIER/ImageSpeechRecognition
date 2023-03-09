@@ -1,18 +1,22 @@
 import face_recognition
 import cv2
 import numpy as np
-from video_detection import pretrained_age, getImagesAndLabels
+from video_detection import pretrained_age
+import json
 
 # Listes
-known_face_encodings = []
-known_face_names = []
 face_locations = []
 face_encodings = []
 face_names = []
 
+# Ouvrir les features
+known_face_encodings = np.load("./photos_featured/known_face_encodings.npy")
+# Ouvrir les labels
+with open('./photos_featured/known_face_names.json', 'r') as f:
+    known_face_names = json.load(f)
+
 # A enregistrer dans des listes
 ageNet,genderNet,ageList,genderList,MODEL_MEAN_VALUES = pretrained_age()
-known_face_encodings, known_face_names = getImagesAndLabels("./photos/")
 
 # Get a reference to webcam #0 (the default one)
 video_capture = cv2.VideoCapture(0)
@@ -42,11 +46,6 @@ while True:
             matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
             name = "Unknown"
 
-            # # If a match was found in known_face_encodings, just use the first one.
-            # if True in matches:
-            #     first_match_index = matches.index(True)
-            #     name = known_face_names[first_match_index]
-
             # Or instead, use the known face with the smallest distance to the new face
             face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
             best_match_index = np.argmin(face_distances)
@@ -68,28 +67,26 @@ while True:
         # Draw a box around the face
         cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
         # Extract face ROI
-        
-        # Preprocess the face ROI
-        # blob = cv2.dnn.blobFromImage(face_locations, 1.0, (227, 227), MODEL_MEAN_VALUES, swapRB=False)
-        
-        # # Pass the face through the age and gender nets
-        # genderNet.setInput(blob)
-        # genderPreds = genderNet.forward()
-        # gender = genderList[genderPreds[0].argmax()]
-        
-        # ageNet.setInput(blob)
-        # agePreds = ageNet.forward()
-        # age = ageList[agePreds[0].argmax()]
-        
-        # Draw age and gender labels on the frame
-        # label = "{}, {}".format(gender, age)
 
-        # Cadre ? 
+        # Cadre
         cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
 
         font = cv2.FONT_HERSHEY_DUPLEX
 
-        # Age - Sexe
+        # Preprocess the face ROI
+        
+        # Pass the face through the age and gender nets
+        # genderNet.setInput(small_frame)
+        # genderPreds = genderNet.forward()
+        # gender = genderList[genderPreds[0].argmax()]
+        
+        # ageNet.setInput(small_frame)
+        # agePreds = ageNet.forward()
+        # age = ageList[agePreds[0].argmax()]
+        
+        # # Draw age and gender labels on the frame
+        # label = "{}, {}".format(gender, age)
+        # # Age - Sexe
         # cv2.putText(frame, label, (left + 6, bottom - 3), font, 1.0, (255, 255, 255), 1)
         # Prenom
         cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
