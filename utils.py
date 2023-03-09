@@ -276,4 +276,3 @@ class StreamlitThread():
                 placetext.write(text)
                 placeholder.image(self.opencamT.frame, use_column_width=True)
                 
-    
