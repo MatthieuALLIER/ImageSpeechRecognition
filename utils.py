@@ -1,14 +1,14 @@
 import threading
-import speech_recognition as sr
-import face_recognition
 import io
 import contextlib
-from pynput.keyboard import Controller
-import cv2
 import datetime
+import json
+
+import speech_recognition as sr
+import face_recognition
+import cv2
 import streamlit as st
 import numpy as np
-import json
 from deepface import DeepFace
 
 class listenThread(threading.Thread):
@@ -16,7 +16,6 @@ class listenThread(threading.Thread):
         threading.Thread.__init__(self)
         self.text = []
         self.app = app
-        self.keyboard = Controller()
         self.r = sr.Recognizer()
         with sr.Microphone() as source:
             self.r.adjust_for_ambient_noise(source, 3)
@@ -262,10 +261,11 @@ class StreamlitThread():
                 if self.record:
                     if self.out is None:
                         current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-                        filename = f"{current_time}.avi"                
-                        fourcc = cv2.VideoWriter_fourcc(*'MJPG')
+                        filename = f"{current_time}.mp4"                
+                        fourcc = cv2.VideoWriter_fourcc(*'XVID')
                         self.out = cv2.VideoWriter(filename, fourcc, 10, self.opencamT.size)
-                    self.out.write(self.opencamT.frame)                               
+                    frame = self.opencamT.frame[:, :, ::-1]
+                    self.out.write(frame)                  
                        
                 text = " / ".join(self.listenReactT.text[-15:])
                 placetext.write(text)
