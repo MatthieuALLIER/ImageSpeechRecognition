@@ -77,18 +77,18 @@ while True:
         left *= 4
 
         # Box
-        cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
+        cv2.rectangle(frame, (left, top), (right, bottom), (0,89,255), 2)
         # Cadre
-        cv2.rectangle(frame, (left, bottom - 20), (right+1, bottom + 60), (0, 0, 255), cv2.FILLED)
+        cv2.rectangle(frame, (left, bottom - 20), (right+1, bottom + 60), (0,89,255), cv2.FILLED)
 
         font = cv2.FONT_HERSHEY_DUPLEX
         # Prenom
-        cv2.putText(frame, name, (left + 6, bottom +10), font, 1.0, (255, 255, 255), 1)
+        cv2.putText(frame, name, (left + 6, bottom +10), font, 1.0, (0, 0, 0), 1)
         
         # # Draw age and gender labels on the frame
         label = "{}, {}".format(gender, age)
         # Age - Sexe
-        cv2.putText(frame, label, (left + 6, bottom + 50), font, 1.0, (255, 255, 255), 1)
+        cv2.putText(frame, label, (left + 6, bottom + 50), font, 1.0, (0, 0, 0), 1)
 
 
     # Display the resulting image
