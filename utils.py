@@ -31,28 +31,28 @@ class listenThread(threading.Thread):
                 dest = dest.lower()
                 self.text.append(dest)     
                 
-                if (dest=="démarrer"):
+                if ("démarrer" in dest):
                     self.text.append('La caméra démarre')
                     self.app.start_webcam() 
                        
-                elif (dest=="enregistrer"):
+                elif ("enregistrer" in dest):
                     self.text.append("Enregistrement")
                     self.keyboard.press('r')
                     self.keyboard.release('r') 
                            
-                elif (dest=="stopper"):
+                elif ("stopper" in dest):
                     self.text.append("Fin de l'enregistrement")
                     self.keyboard.press('s')
                     self.keyboard.release('s') 
                        
-                elif (dest=="arrêter"):
+                elif ("arrêter" in dest):
                     self.text.append("La caméra se ferme")
                     self.app.stop_webcam()
                     
-                elif (dest=="quoi"):
+                elif ("quoi" in dest):
                     self.text.append("feur") 
                     
-                elif (dest=="finir"):
+                elif ("finir" in dest):
                     self.stop()
                     
                 else:
@@ -65,10 +65,7 @@ class listenThread(threading.Thread):
             self.app.islistening()
                 
     def stop(self):
-        print("Le micro est coupé")
-        self.is_running = False
-        self.app.stoplistening()
-        st.stop()
+        raise SystemExit
       
           
 class cameraThread(threading.Thread):
