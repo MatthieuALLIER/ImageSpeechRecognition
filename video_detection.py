@@ -3,9 +3,7 @@ import os
 import face_recognition
 import re
 import warnings
-import numpy as np
 import json
-import ast
 
 # Supprimer le warning "Décompression bomb DOS"
 warnings.filterwarnings("ignore", message="Image size.*")

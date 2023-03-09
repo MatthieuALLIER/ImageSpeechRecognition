@@ -8,6 +8,8 @@ import json
 face_locations = []
 face_encodings = []
 face_names = []
+genders = []
+ages = []
 
 # Ouvrir les features
 known_face_encodings = np.load("./photos_featured/known_face_encodings.npy")
@@ -30,7 +32,6 @@ while True:
     if process_this_frame:
         # Resize frame of video to 1/4 size for faster face recognition processing
 
-        # Marche si on met 320 240 à la place de 0 0 mais décale tout
         small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
 
         # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
@@ -54,6 +55,17 @@ while True:
 
             face_names.append(name)
 
+            blob = cv2.dnn.blobFromImage(small_frame, 1.0, (227, 227), MODEL_MEAN_VALUES, swapRB=False)
+
+            #Pass the face through the age and gender nets
+            genderNet.setInput(blob)
+            genderPreds = genderNet.forward()
+            gender = genderList[genderPreds[0].argmax()]
+
+            ageNet.setInput(blob)
+            agePreds = ageNet.forward()
+            age = ageList[agePreds[0].argmax()]
+
     process_this_frame = not process_this_frame
 
     # Display the results
@@ -64,32 +76,20 @@ while True:
         bottom *= 4
         left *= 4
 
-        # Draw a box around the face
+        # Box
         cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
-        # Extract face ROI
-
         # Cadre
-        cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
+        cv2.rectangle(frame, (left, bottom - 20), (right+1, bottom + 60), (0, 0, 255), cv2.FILLED)
 
         font = cv2.FONT_HERSHEY_DUPLEX
-
-        # Preprocess the face ROI
-        
-        # Pass the face through the age and gender nets
-        # genderNet.setInput(small_frame)
-        # genderPreds = genderNet.forward()
-        # gender = genderList[genderPreds[0].argmax()]
-        
-        # ageNet.setInput(small_frame)
-        # agePreds = ageNet.forward()
-        # age = ageList[agePreds[0].argmax()]
+        # Prenom
+        cv2.putText(frame, name, (left + 6, bottom +10), font, 1.0, (255, 255, 255), 1)
         
         # # Draw age and gender labels on the frame
-        # label = "{}, {}".format(gender, age)
-        # # Age - Sexe
-        # cv2.putText(frame, label, (left + 6, bottom - 3), font, 1.0, (255, 255, 255), 1)
-        # Prenom
-        cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+        label = "{}, {}".format(gender, age)
+        # Age - Sexe
+        cv2.putText(frame, label, (left + 6, bottom + 50), font, 1.0, (255, 255, 255), 1)
+
 
     # Display the resulting image
     cv2.imshow('Video', frame)
