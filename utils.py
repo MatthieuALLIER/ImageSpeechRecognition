@@ -207,7 +207,7 @@ class StreamlitThread():
         self.listenReactT = listenThread(self)
         self.listening = False
         self.textUpdated = False
-        st.set_page_config(page_title='SL', page_icon=':guardsman:', layout='wide')
+        st.set_page_config(page_title='SL', page_icon='ricco.png', layout='wide')
         st.title('Challenge')
         self.record=False
         self.out= None
@@ -262,7 +262,7 @@ class StreamlitThread():
                     if self.out is None:
                         current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
                         filename = f"{current_time}.mp4"                
-                        fourcc = cv2.VideoWriter_fourcc(*'XVID')
+                        fourcc = cv2.VideoWriter_fourcc(*'H264')
                         self.out = cv2.VideoWriter(filename, fourcc, 10, self.opencamT.size)
                     frame = self.opencamT.frame[:, :, ::-1]
                     self.out.write(frame)                  
