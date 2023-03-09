@@ -4,6 +4,7 @@ import numpy as np
 from video_detection import pretrained_age
 import json
 from tensorflow.keras.models import load_model
+from deepface import DeepFace
 
 # Listes
 face_locations = []
@@ -70,6 +71,8 @@ while True:
             agePreds = ageNet.forward()
             age = ageList[agePreds[0].argmax()]
 
+            obj = DeepFace.analyze(small_frame)
+            print(obj)
             small_frame_resized = cv2.resize(small_frame, (224, 224))
             small_frame_resized = np.expand_dims(small_frame_resized, axis=0)
             emotion_probabilities = model.predict(small_frame_resized, verbose = 0)[0]
