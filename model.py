@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 from video_detection import pretrained_age
 import json
+from tensorflow.keras.models import load_model
 
 # Listes
 face_locations = []
@@ -10,6 +11,9 @@ face_encodings = []
 face_names = []
 genders = []
 ages = []
+
+# Import models 
+model = load_model('./model/my_model_MobileNet.h5')
 
 # Ouvrir les features
 known_face_encodings = np.load("./photos_featured/known_face_encodings.npy")
@@ -66,6 +70,12 @@ while True:
             agePreds = ageNet.forward()
             age = ageList[agePreds[0].argmax()]
 
+            small_frame_resized = cv2.resize(small_frame, (224, 224))
+            small_frame_resized = np.expand_dims(small_frame_resized, axis=0)
+            emotion_probabilities = model.predict(small_frame_resized, verbose = 0)[0]
+            emotion_label = np.argmax(emotion_probabilities)
+            emotion_text = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral'][emotion_label]
+
     process_this_frame = not process_this_frame
 
     # Display the results
@@ -89,7 +99,8 @@ while True:
         label = "{}, {}".format(gender, age)
         # Age - Sexe
         cv2.putText(frame, label, (left + 6, bottom + 50), font, 1.0, (0, 0, 0), 1)
-
+        # Emotion
+        cv2.putText(frame, emotion_text, (left, bottom-10),font, 1, (0, 0, 0), 1)
 
     # Display the resulting image
     cv2.imshow('Video', frame)
