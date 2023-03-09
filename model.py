@@ -85,14 +85,37 @@ while True:
         # Box
         cv2.rectangle(frame, (left, top), (right, bottom), (0,89,255), 2)
         # Cadre
-        cv2.rectangle(frame, (left, bottom - 20), (right+1, bottom + 180), (0,89,255), cv2.FILLED)
+        cv2.rectangle(frame, (left, bottom - 20), (right+1, bottom + 70), (0,89,255), cv2.FILLED)
 
         font = cv2.FONT_HERSHEY_DUPLEX
         # Informations
         labels = "{}, {}, {}".format(name, age, gender)
-        cv2.putText(frame, labels, (left + 6, bottom +10), font, 1.1, (0, 0, 0), 1)
+        
+        # Get the size of the text in pixels
+        text_size, _ = cv2.getTextSize(labels, font, 1.1, 1)
+        # Calculate the width of the rectangle
+        rect_width = right - left
+        
+        # Adapt the size of the text to the width of the rectangle
+        if text_size[0] > rect_width:
+            font_scale = rect_width / text_size[0]
+        else:
+            font_scale = 1.1
+            
+        # Draw the text with the adapted font size
+        cv2.putText(frame, labels, (left + 6, bottom +10), font, font_scale, (0, 0, 0), 1)
 
-        cv2.putText(frame, emotion, (left + 6, bottom +45), font, 1.1, (0, 0, 0), 1)
+        # Adapt the size of the emotion text to the width of the rectangle
+        text_size, _ = cv2.getTextSize(emotion, font, 1.1, 1)
+        
+        if text_size[0] > rect_width:
+            font_scale = rect_width / text_size[0]
+        else:
+            font_scale = 1.1
+        
+        cv2.putText(frame, emotion, (left + 6, bottom +45), font, font_scale, (0, 0, 0), 1)
+
+
 
         # sorted_emo = sorted(emo_pers, key=lambda x: x[1], reverse=True)[:3]
         # for i, (emo, percent) in enumerate(sorted_emo):
