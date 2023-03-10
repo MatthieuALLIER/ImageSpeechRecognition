@@ -9,7 +9,7 @@ We had 2 days to create a streamlit app. The goal is to control the webcam of ou
 
 ## Objectif de ce repository
 
-Ce repository présente comment utiliser l'image Docker pour accéder à l'application Streamlit
+Ce repository présente comment utiliser l'image Docker pour accéder à l'application Streamlit, et coment utiliser cette dernière
 
 ## Comment utiliser ce repository :
 
@@ -52,10 +52,10 @@ $ docker run -p 8501:8501 "nom_image_de_votre_choix"
 ```
 Après avoir lancé ces commandes vous pouvez ouvrir l'application sur : localhost:8501
 
-## Présentation de l'application streamlit
+## 3. Présentation de l'application streamlit
 
 Lorsque nous arrivons sur l'application, vous pouvez appuyer sur "Lancer la reconnaissance vocale" afin de démarrer celle-ci. Afin d'activement la webcam il faut prononcer le mot "Démarrer" (vous pouvez prononcer une phrase qui contient le mot "démarrer", cela fonctionne aussi). Celle-ci met plusieurs seconde avant de s'activer, il faut un peu de patience.  Afin d'arrêter la webcam il faut prononcer le mot "arrêter". Lorsque la webcam est active, vous pouvez lancer un enregistrement en prononçant le mot "enregistrer", et stopper celui-ci avec le mot "stopper". A gauche de l'écran s'affiche les mots que l'appareil a entendu, ainsi que ses réponses (par exemple, si il a entendu le mot démarrer, il va répondre "la caméra s'allume")
-Vous pouvez consulter directement consulter vos vidéos enregistrées dans l'onglet
+Vous pouvez consulter directement consulter vos vidéos enregistrées dans l'onglet "Recordings".
 
 
 
