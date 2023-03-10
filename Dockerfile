@@ -15,10 +15,11 @@ RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 
 COPY requirements.txt ./requirements.txt
 
-RUN pip install -U pip
-RUN pip install -U wheel
-RUN pip install -U setuptools
-RUN pip install -r requirements.txt
+RUN pip3 install -U pip
+RUN pip3 install -U wheel
+RUN pip3 install -U setuptools
+RUN pip3 install -r requirements.txt
+RUN pip3 install dlib
 
 COPY app.py app.py
 COPY model ./app/model
