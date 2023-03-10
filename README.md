@@ -54,7 +54,7 @@ Après avoir lancé ces commandes vous pouvez ouvrir l'application sur : localho
 
 ## 3. Présentation de l'application streamlit
 
-Lorsque vous arrivez sur l'application, vous pouvez appuyer sur "Lancer la reconnaissance vocale" afin d'activer celle-ci. Afin d'activer la webcam, il faut prononcer le mot "Démarrer" (vous pouvez aussi prononcer une phrase qui contient le mot "démarrer", cela fonctionne aussi). Celle-ci met plusieurs secondes avant de s'activer, il faut un peu de patience.  Afin d'arrêter la webcam il faut prononcer le mot "arrêter". Lorsque la webcam est active, vous pouvez lancer un enregistrement en prononçant le mot "enregistrer", et stopper celui-ci avec le mot "stopper". A droite de l'écran s'affichent les mots que l'appareil a entendus, ainsi que ses réponses (par exemple, s'il a entendu le mot démarrer, il va répondre "la caméra démarre")
+Lorsque vous arrivez sur l'application, vous pouvez appuyer sur "Lancer la reconnaissance vocale" afin d'activer celle-ci. Pour activer la webcam, il faut prononcer le mot "Démarrer" (vous pouvez aussi prononcer une phrase qui contient le mot "démarrer", cela fonctionne aussi). Celle-ci met plusieurs secondes avant de s'activer, il faut un peu de patience.  Afin d'arrêter la webcam il faut prononcer le mot "arrêter". Lorsque la webcam est active, vous pouvez lancer un enregistrement en prononçant le mot "enregistrer", et stopper celui-ci avec le mot "stopper". A droite de l'écran s'affichent les mots que l'appareil a entendus, ainsi que ses réponses (par exemple, s'il a entendu le mot démarrer, il va répondre "la caméra démarre")
 Vous pouvez directement consulter vos vidéos enregistrées dans l'onglet "Recordings".
 
 ### Résumé des commandes vocales
