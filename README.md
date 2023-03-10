@@ -54,6 +54,7 @@ $ docker run -p 8501:8501 "nom_image_de_votre_choix"
 ## 3. Lancer l'application localement
 
 Dans un terminal, se positionner dans le dossier "ImageSpeechRecognition" avec la commande cd
+
 Executer ensuite la commande : python -m streamlit app.py
 
 
