@@ -59,7 +59,7 @@ Dans un terminal, se positionner dans le dossier "ImageSpeechRecognition" avec l
 
 Executer ensuite la commande : python -m streamlit app.py
 
-Après avoir lancé ces commandes vous pouvez ouvrir l'application sur : localhost:8501
+Après avoir lancé ces commandes, l'application s'ouvre, ou vous pouvez ouvrir l'application sur : localhost:8501
 
 ## 4. Présentation de l'application streamlit
 
