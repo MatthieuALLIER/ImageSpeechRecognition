@@ -63,6 +63,7 @@ Vous pouvez consulter directement consulter vos vidéos enregistrées dans l'ong
 * **Enregistrer** pour commencer un enregistrement
 * **Stopper** pour stopper l'enregistrement
 * **Arrêter** pour arrêter la webcam
+
 A noter qu'il faut stopper l'enregistrement avant d'arrêter la webcam si vous voulez que celui-ci fonctionne.
 
 
