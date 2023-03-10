@@ -66,6 +66,8 @@ Après avoir lancé ces commandes, l'application s'ouvre, ou vous pouvez ouvrir 
 Lorsque vous arrivez sur l'application, vous pouvez appuyer sur "Lancer la reconnaissance vocale" afin d'activer celle-ci. Pour activer la webcam, il faut prononcer le mot "Démarrer" (vous pouvez aussi prononcer une phrase qui contient le mot "démarrer", cela fonctionne aussi). Celle-ci met plusieurs secondes avant de s'activer, il faut un peu de patience.  Afin d'arrêter la webcam il faut prononcer le mot "arrêter". Lorsque la webcam est active, vous pouvez lancer un enregistrement en prononçant le mot "enregistrer", et stopper celui-ci avec le mot "stopper". A droite de l'écran s'affichent les mots que l'appareil a entendus, ainsi que ses réponses (par exemple, s'il a entendu le mot démarrer, il va répondre "la caméra démarre")
 Vous pouvez directement consulter vos vidéos enregistrées dans l'onglet "Recordings".
 
+![Face Detection]([https://github.com/MatthieuALLIER/ImageSpeechRecognition/blob/main/face_detection.png])
+
 ### Résumé des commandes vocales
 
 * **Démarrer** pour démarrer la webcam
