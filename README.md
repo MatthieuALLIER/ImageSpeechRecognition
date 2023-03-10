@@ -51,13 +51,13 @@ $ docker build -t "nom_image_de_votre_choix" .
 $ docker run -p 8501:8501 "nom_image_de_votre_choix"
 ```
 
+Après avoir lancé ces commandes vous pouvez ouvrir l'application sur : localhost:8501
+
 ## 3. Lancer l'application localement
 
 Dans un terminal, se positionner dans le dossier "ImageSpeechRecognition" avec la commande cd
 
 Executer ensuite la commande : python -m streamlit app.py
-
-
 
 Après avoir lancé ces commandes vous pouvez ouvrir l'application sur : localhost:8501
 
