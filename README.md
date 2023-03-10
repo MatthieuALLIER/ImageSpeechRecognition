@@ -61,7 +61,7 @@ Après avoir lancé ces commandes vous pouvez ouvrir l'application sur : localho
 
 * Installer ensuite le reste des dépendances avec la commande : pip install -r requirements.txt. 
 
-* Dans un terminal, se positionner dans le dossier "ImageSpeechRecognition" avec la commande cd
+* Dans un terminal, se positionner dans le dossier "ImageSpeechRecognition" avec la commande cd <chemin de votre projet>
 
 * Lancer l'application avec la commande : python -m streamlit app.py
 
