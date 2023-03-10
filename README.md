@@ -57,6 +57,14 @@ Après avoir lancé ces commandes vous pouvez ouvrir l'application sur : localho
 Lorsque nous arrivons sur l'application, vous pouvez appuyer sur "Lancer la reconnaissance vocale" afin de démarrer celle-ci. Afin d'activement la webcam il faut prononcer le mot "Démarrer" (vous pouvez prononcer une phrase qui contient le mot "démarrer", cela fonctionne aussi). Celle-ci met plusieurs seconde avant de s'activer, il faut un peu de patience.  Afin d'arrêter la webcam il faut prononcer le mot "arrêter". Lorsque la webcam est active, vous pouvez lancer un enregistrement en prononçant le mot "enregistrer", et stopper celui-ci avec le mot "stopper". A gauche de l'écran s'affiche les mots que l'appareil a entendu, ainsi que ses réponses (par exemple, si il a entendu le mot démarrer, il va répondre "la caméra s'allume")
 Vous pouvez consulter directement consulter vos vidéos enregistrées dans l'onglet "Recordings".
 
+### Résumé des commandes vocales
+
+* Démarrer pour démarrer la webcam
+* Enregistrer pour commencer un enregistrement
+* Stopper pour stopper l'enregistrement
+* Arrêter pour arrêter la webcam
+A noter qu'il faut stopper l'enregistrement avant d'arrêter la webcam si vous voulez que celui-ci fonctionne.
+
 
 
 
