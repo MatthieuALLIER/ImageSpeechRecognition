@@ -55,13 +55,13 @@ Après avoir lancé ces commandes vous pouvez ouvrir l'application sur : localho
 
 ## 3. Lancer l'application localement
 
-Dans un terminal, se positionner dans le dossier "ImageSpeechRecognition" avec la commande cd
+* Dans un terminal, se positionner dans le dossier "ImageSpeechRecognition" avec la commande cd
 
-Installer les dépendances avec la commande : pip install -r requirements.txt
+* Installer les dépendances avec la commande : pip install -r requirements.txt
 
-Lancer l'application avec la commande : python -m streamlit app.py
+* Lancer l'application avec la commande : python -m streamlit app.py
 
-Après avoir lancé ces commandes, l'application s'ouvre, ou vous pouvez ouvrir l'application sur : localhost:8501
+* Après avoir lancé ces commandes, l'application s'ouvre, ou vous pouvez ouvrir l'application sur : localhost:8501
 
 ## 4. Présentation de l'application streamlit
 
