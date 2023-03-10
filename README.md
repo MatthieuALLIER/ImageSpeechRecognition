@@ -8,7 +8,7 @@ We had 2 days to create a streamlit app. The goal is to control the webcam of ou
 
 ## Objectif de ce repository
 
-Ce repository présente comment utiliser l'image Docker pour accéder à l'application Streamlit, et comment utiliser cette dernière. Les commandes vocales ne peuvent pas être hebergées sur Docker. Nous proposons donc 2 solutions : la première est d'utiliser l'application à partir d'une image docker, où nous avons remplacé les commandes vocales par de simples bouttons. La deuxième solution, permettant d'utiliser les commandes vocales est de lancer localement l'application streamlit.
+Ce repository présente comment utiliser l'application Streamlit. Les commandes vocales ne peuvent pas être hebergées sur Docker. L'application avec commande vocale n'est donc disponible que localement.
 
 ## 1. Lancer l'application localement
 
@@ -43,10 +43,7 @@ Voici un exemple de ce que l'application pourra vous affichez lorsque la caméra
 
 A noter qu'il faut stopper l'enregistrement avant d'arrêter la webcam si vous voulez que celui-ci fonctionne.
 
-
 ## 3. Programmes et outils utilisés
 
 Pour la reconnaissance faciale, nous utilisons entre autres la librairie DeepFace de Pypi, qui est un framework de reconnaissance faciale hybride renfermant divers modèles de réseaux de neurones dont VGG-Face, ainsi que les librairies face_recognition et OpenCV.
 Pour la reconnaissance vocale, nous utilisons surtout la librairie speech_recognition. La notion de threading (programmation parallèle) nous a été très utile pour paralléliser les reconnaissances faciale et vocale, pour que nous puissions lancer des commandes vocales tout en gardant la webcam activée.
-
-
