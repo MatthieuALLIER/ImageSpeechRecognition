@@ -70,7 +70,7 @@ A noter qu'il faut stopper l'enregistrement avant d'arrêter la webcam si vous v
 ## 4. Programmes et outils utilisés
 
 Pour la reconnaissance faciale, nous utilisons entre autres la librairie DeepFace de Pypi, qui est un framework de reconnaissance faciale hybride renfermant divers modèles de réseaux de neurones dont VGG-Face, ainsi que les librairies face_recognition et OpenCV.
-Pour la reconnaissance vocale, nous utilisons surtout les librairies speech_recognition et threading pour paralléliser les reconnaissances faciale et vocale, pour que nous puissions lancer des commandes vocales tout en gardant la webcam activée.
+Pour la reconnaissance vocale, nous utilisons surtout la librairie speech_recognition. La notion de threading (programmation parallèle) nous a été très utile pour paralléliser les reconnaissances faciale et vocale, pour que nous puissions lancer des commandes vocales tout en gardant la webcam activée.
 
 
 
